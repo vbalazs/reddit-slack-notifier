@@ -12,7 +12,7 @@ module Clients
     end
 
     def params
-      keys = %w[title author post_url]
+      keys = %w[title post_url author image_url subreddit posted_at]
       json.select { |k, _| keys.include?(k) }
     end
   end

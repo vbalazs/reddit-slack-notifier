@@ -19,13 +19,19 @@ module Clients
         "random" => "x",
         "title" => "Super Post",
         "author" => "Person",
-        "post_url" => "http://google.com"
+        "post_url" => "http://google.com",
+        "image_url" => "https://images.com/image.jpg",
+        "subreddit" => "pics",
+        "posted_at" => "yesterday"
       }
 
       assert_equal({
                      "title" => "Super Post",
                      "author" => "Person",
-                     "post_url" => "http://google.com"
+                     "post_url" => "http://google.com",
+                     "image_url" => "https://images.com/image.jpg",
+                     "subreddit" => "pics",
+                     "posted_at" => "yesterday"
                    }, build_client(input).params)
     end
 
