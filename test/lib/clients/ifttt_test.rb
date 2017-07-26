@@ -1,7 +1,7 @@
 require "test_helper"
 
 module Clients
-  class TestIfttt < Minitest::Test
+  class IftttTest < Minitest::Test
     def test_authorized_happy
       input = { "token" => "abc" }
 

@@ -2,7 +2,7 @@ require "test_helper"
 
 module Http
   module Actions
-    class TestPostIfttt < Minitest::Test
+    class PostIftttTest < Minitest::Test
       def test_raises_unauthorized
         client = build_client
         action = build_action(client)
