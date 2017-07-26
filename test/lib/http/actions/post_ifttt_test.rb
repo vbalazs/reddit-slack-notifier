@@ -3,11 +3,16 @@ require "test_helper"
 module Http
   module Actions
     class PostIftttTest < Minitest::Test
-      def test_raises_unauthorized
-        client = build_client
-        action = build_action(client)
+      def setup
+        @slack_client = Minitest::Mock.new
+        @slack_client.expect :post, nil, [Clients::Slack::Message]
+      end
 
-        client.stub :authorized?, false do
+      def test_raises_unauthorized
+        ifttt_client = build_ifttt_client
+        action = build_action(ifttt_client)
+
+        ifttt_client.stub :authorized?, false do
           assert_raises UnathorizedRequest do
             action.call
           end
@@ -15,21 +20,35 @@ module Http
       end
 
       def test_returns_ok_when_authorized
-        client = build_client
-        action = build_action(client)
+        ifttt_client = build_ifttt_client
+        action = build_action(ifttt_client)
 
-        client.stub :authorized?, true do
+        ifttt_client.stub :authorized?, true do
           assert_equal "OK", action.call
         end
       end
 
-      private
+      def test_calls_slack_client_post
+        ifttt_client = build_ifttt_client
+        action = build_action(ifttt_client)
 
-      def build_action(client)
-        Http::Actions::PostIfttt.new(ifttt_client: client)
+        ifttt_client.stub :authorized?, true do
+          action.call
+        end
+
+        @slack_client.verify
       end
 
-      def build_client
+      private
+
+      def build_action(ifttt_client)
+        Http::Actions::PostIfttt.new(
+          ifttt_client: ifttt_client,
+          slack_client: @slack_client
+        )
+      end
+
+      def build_ifttt_client
         Clients::Ifttt.new(json: {}, token: "")
       end
     end
