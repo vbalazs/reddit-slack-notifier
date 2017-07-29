@@ -32,20 +32,10 @@ module Clients
       # rubocop:enable Metrics/MethodLength
 
       def test_title_without_tags
-        cases = {
-          "Fun post [maybe]" => "Fun post [maybe]",
-          "Funny [not] post" => "Funny [not] post",
-          "[ ruby ][elixir] Very interesting" => "Very interesting",
-          "[dev-ops] Never forget" => "Never forget",
-          "[] Haxor" => "Haxor",
-          "[   ] H4xor" => "H4xor"
-        }
-
-        cases.each do |input, expected|
-          msg = Message.new("title" => input)
-          assert_equal expected, msg.as_attachment["title"]
-          assert_includes msg.as_attachment["fallback"], expected
-        end
+        msg = Message.new("title" => "[ruby] Awesome article")
+        expected = "Awesome article"
+        assert_equal expected, msg.as_attachment["title"]
+        assert_includes msg.as_attachment["fallback"], expected
       end
     end
   end

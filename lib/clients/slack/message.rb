@@ -44,8 +44,7 @@ module Clients
       end
 
       def title_without_tags
-        # http://rubular.com/r/8Hc5JMaaDE
-        /^(\[\s*[\w-]*\s*\]\s*)*(.*)$/.match(title)[2]
+        Reddit::PostTitle.new(title).title_without_tags
       end
     end
   end
