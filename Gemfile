@@ -16,4 +16,5 @@ group :test do
   gem "minitest"
   gem "pry-byebug"
   gem "rubocop"
+  gem "webmock", "~> 3.0"
 end
