@@ -9,7 +9,6 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     hashdiff (0.3.4)
-    hiredis (0.6.1)
     method_source (0.8.2)
     minitest (5.10.3)
     parallel (1.12.0)
@@ -31,7 +30,6 @@ GEM
     rainbow (2.2.2)
       rake
     rake (12.0.0)
-    redis (3.3.3)
     rubocop (0.49.1)
       parallel (~> 1.10)
       parser (>= 2.3.3.1, < 3.0)
@@ -54,13 +52,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hiredis
   minitest
   pry-byebug
   puma
   rack
   rack-app
-  redis
   rubocop
   shotgun
   webmock (~> 3.0)
