@@ -8,10 +8,16 @@ module Clients
       assert build_client(input).authorized?
     end
 
-    def test_authorized_unhappy
+    def test_unathorized
       input = { "token" => "xyz" }
 
       refute build_client(input).authorized?
+    end
+
+    def test_when_empty_token_then_unathorized
+      input = { "token" => "xyz" }
+
+      refute Ifttt.new(json: input, token: "").authorized?
     end
 
     def test_params

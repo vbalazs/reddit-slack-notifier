@@ -8,7 +8,7 @@ module Clients
     end
 
     def authorized?
-      json["token"] == token
+      !token.to_s.empty? && token == json["token"]
     end
 
     def params
