@@ -35,8 +35,8 @@ class WebTest < Minitest::Test
     skip "this is a glorified testcase with too many deps"
     subject.stub :slack_client, Minitest::Mock.new do
       response = post(url: "/ifttt",
-                    headers: { "Content-Type" => "application/json" },
-                    payload: { token: "abc" }.to_json)
+                      headers: { "Content-Type" => "application/json" },
+                      payload: { token: "abc" }.to_json)
 
       assert_equal 200, response.status
       assert_equal "OK", response.body

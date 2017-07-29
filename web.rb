@@ -19,12 +19,28 @@ class Web < Rack::App
   post "/ifttt" do
     body = JSON.parse(request.body.read)
     ifttt_token_cfg = ENV.fetch("IFTTT_APPLET_TOKEN")
-    client = Clients::Ifttt.new(json: body, token: ifttt_token_cfg)
+    ifttt_client = Clients::Ifttt.new(json: body, token: ifttt_token_cfg)
 
-    Http::Actions::PostIfttt.new(ifttt_client: client).call
+    Http::Actions::PostIfttt.new(
+      ifttt_client: ifttt_client,
+      slack_client: slack_client
+    ).call
   end
 
   error UnathorizedRequest do |_|
     response.status = 401
+  end
+
+  def slack_client
+    url = ENV.fetch("SLACK_INCOMING_WEBHOOK_URL")
+
+    Clients::Slack::Notifier.new(url: url, channel_selector: channel_selector)
+  end
+
+  def channel_selector
+    whitelist = ENV.fetch("SLACK_CHANNELS_WHITELIST", "").split(",")
+    default_channel = ENV.fetch("SLACK_DEFAULT_CHANNEL", "random")
+
+    Clients::Slack::ChannelSelector.new(default: default_channel, whitelist: whitelist)
   end
 end
