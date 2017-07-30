@@ -9,8 +9,11 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     hashdiff (0.3.4)
+    metaclass (0.0.4)
     method_source (0.8.2)
     minitest (5.10.3)
+    mocha (1.2.1)
+      metaclass (~> 0.0.1)
     parallel (1.12.0)
     parser (2.4.0.0)
       ast (~> 2.2)
@@ -53,6 +56,7 @@ PLATFORMS
 
 DEPENDENCIES
   minitest
+  mocha
   pry-byebug
   puma
   rack
