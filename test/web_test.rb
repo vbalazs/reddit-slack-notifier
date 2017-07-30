@@ -23,23 +23,24 @@ class WebTest < Minitest::Test
     assert_equal "OK", response.body
   end
 
-  def test_ifttt_unauthorized
+  def test_when_ifttt_unauthorized_returns_401
     response = post(url: "/ifttt",
                     headers: { "Content-Type" => "application/json" },
                     payload: "{}")
+
+    Http::Actions::PostIfttt.any_instance.stubs(:call).raises(UnathorizedRequest)
 
     assert_equal 401, response.status
   end
 
   def test_ifttt_returns_ok
-    skip "this is a glorified testcase with too many deps"
-    subject.stub :slack_client, Minitest::Mock.new do
-      response = post(url: "/ifttt",
-                      headers: { "Content-Type" => "application/json" },
-                      payload: { token: "abc" }.to_json)
+    Http::Actions::PostIfttt.any_instance.stubs(:call).returns("OK")
 
-      assert_equal 200, response.status
-      assert_equal "OK", response.body
-    end
+    response = post(url: "/ifttt",
+                    headers: { "Content-Type" => "application/json" },
+                    payload: "{}")
+
+    assert_equal 200, response.status
+    assert_equal "OK", response.body
   end
 end
