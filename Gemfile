@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "2.4.1"
 
+gem "redd"
+
 group :test do
   gem "minitest"
   gem "mocha"
