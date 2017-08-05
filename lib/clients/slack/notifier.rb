@@ -11,7 +11,7 @@ module Clients
       end
 
       def post(message)
-        channels = channel_selector.channels(message.title)
+        channels = channel_selector.channels(message.tags)
 
         channels.each do |channel|
           body = {

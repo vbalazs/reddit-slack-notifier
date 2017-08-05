@@ -8,8 +8,8 @@ module Clients
         @default = default
       end
 
-      def channels(title)
-        channels = filtered_channels(title)
+      def channels(tags)
+        channels = filtered_channels(tags)
         return [default] if channels.empty?
 
         channels
@@ -17,10 +17,8 @@ module Clients
 
       private
 
-      def filtered_channels(title)
-        parsed_title = Reddit::PostTitle.new(title)
-
-        whitelist & parsed_title.tags
+      def filtered_channels(tags)
+        whitelist & tags
       end
     end
   end
