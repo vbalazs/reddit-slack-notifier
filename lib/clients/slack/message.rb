@@ -1,12 +1,15 @@
 module Clients
   module Slack
     class Message
-      attr_reader :title, :author, :post_url, :image_url, :subreddit, :posted_at
+      attr_reader :title, :tags, :author, :post_url, :permalink,
+                  :image_url, :subreddit, :posted_at
 
       def initialize(params = {})
         @title = params["title"]
+        @tags = params["tags"]
         @author = params["author"]
         @post_url = params["post_url"]
+        @permalink = params["permalink"]
         @image_url = params["image_url"]
         @subreddit = params["subreddit"]
         @posted_at = params["posted_at"]
@@ -14,16 +17,16 @@ module Clients
 
       def as_attachment
         {
-          "fallback"    => "#{pretext}: #{title_without_tags} - #{post_url}",
+          "fallback"    => "#{pretext}: #{title} - #{post_url}",
           "color"       => "#36a64f",
           "pretext"     => pretext,
           "author_name" => subreddit,
-          "author_link" => "https://www.reddit.com/r/#{subreddit}",
+          "author_link" => "https://www.reddit.com#{permalink}",
           "author_icon" => "https://www.redditstatic.com/spreddit5.gif",
           "image_url"   => image_url,
-          "title"       => title_without_tags,
+          "title"       => title,
           "title_link"  => post_url,
-          "ts"          => timestamp
+          "ts"          => posted_at
         }
       end
 
@@ -31,20 +34,6 @@ module Clients
 
       def pretext
         "New post on Reddit by #{author}"
-      end
-
-      def timestamp
-        parsed_date = begin
-          DateTime.parse(posted_at.to_s)
-        rescue ArgumentError
-          DateTime.now
-        end
-
-        parsed_date.strftime("%s")
-      end
-
-      def title_without_tags
-        Reddit::PostTitle.new(title).title_without_tags
       end
     end
   end

@@ -10,12 +10,12 @@ module Clients
           "color" => "#36a64f",
           "pretext" => "New post on Reddit by bobby",
           "author_name" => "pics",
-          "author_link" => "https://www.reddit.com/r/pics",
+          "author_link" => "https://www.reddit.com/a/comments/bla",
           "author_icon" => "https://www.redditstatic.com/spreddit5.gif",
           "image_url" => "http://images.im/abc",
           "title" => "Super new post",
           "title_link" => "https://x.y/z",
-          "ts" => "1501025640"
+          "ts" => 1_501_025_640
         }
 
         message = Message.new(
@@ -24,19 +24,13 @@ module Clients
           "post_url" => "https://x.y/z",
           "image_url" => "http://images.im/abc",
           "subreddit" => "pics",
-          "posted_at" => "July 25, 2017 at 11:34PM"
+          "permalink" => "/a/comments/bla",
+          "posted_at" => 1_501_025_640
         )
 
         assert_equal expected, message.as_attachment
       end
       # rubocop:enable Metrics/MethodLength
-
-      def test_title_without_tags
-        msg = Message.new("title" => "[ruby] Awesome article")
-        expected = "Awesome article"
-        assert_equal expected, msg.as_attachment["title"]
-        assert_includes msg.as_attachment["fallback"], expected
-      end
     end
   end
 end
