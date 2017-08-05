@@ -7,7 +7,8 @@ module ReddFactories
         author: "userx",
         permalink: "/a",
         url: "http://ab.cd/e",
-        subreddit_name_prefixed: "r/aww"
+        subreddit_name_prefixed: "r/aww",
+        created_utc: 1_490_158_000
       }.merge(attrs)
     )
   end

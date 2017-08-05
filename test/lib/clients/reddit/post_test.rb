@@ -11,7 +11,8 @@ module Clients
           author: "goodGuy",
           permalink: "/r/site131/comments/6qmvpe/super_title/",
           url: "http://google.com/x",
-          subreddit_name_prefixed: "r/site131"
+          subreddit_name_prefixed: "r/site131",
+          created_utc: 1_490_158_800
         )
 
         object = Clients::Reddit::Post.new(submission)
@@ -21,6 +22,7 @@ module Clients
         assert_equal "/r/site131/comments/6qmvpe/super_title/", object.permalink
         assert_equal "http://google.com/x", object.url
         assert_equal "r/site131", object.subreddit
+        assert_equal 1_490_158_800, object.posted_at
       end
 
       def test_title_delegators
