@@ -8,6 +8,7 @@ module ReddFactories
         permalink: "/a",
         url: "http://ab.cd/e",
         subreddit_name_prefixed: "r/aww",
+        thumbnail: "http://thumbnail",
         created_utc: 1_490_158_000
       }.merge(attrs)
     )

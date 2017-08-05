@@ -11,6 +11,7 @@ module Clients
           author: "goodGuy",
           permalink: "/r/site131/comments/6qmvpe/super_title/",
           url: "http://google.com/x",
+          thumbnail: "http://thumbnail.com/image",
           subreddit_name_prefixed: "r/site131",
           created_utc: 1_490_158_800
         )
@@ -21,6 +22,7 @@ module Clients
         assert_equal "goodGuy", object.author
         assert_equal "/r/site131/comments/6qmvpe/super_title/", object.permalink
         assert_equal "http://google.com/x", object.url
+        assert_equal "http://thumbnail.com/image", object.thumbnail
         assert_equal "r/site131", object.subreddit
         assert_equal 1_490_158_800, object.posted_at
       end
