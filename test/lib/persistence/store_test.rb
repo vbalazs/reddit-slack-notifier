@@ -21,5 +21,13 @@ module Persistence
 
       adapter.verify
     end
+
+    def test_store_last_run_calls_returns_value
+      adapter = Minitest::Mock.new
+      adapter.expect :set, nil, %w[last_run new_value]
+
+      object = Store.new(adapter)
+      assert_equal "new_value", object.store_last_run("new_value")
+    end
   end
 end
