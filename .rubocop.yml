@@ -10,7 +10,7 @@ Style/StringLiterals:
 ##################### Metrics ##################################
 
 Metrics/ClassLength:
-  Max: 200
+  Max: 100
 
 Metrics/LineLength:
   Max: 100
