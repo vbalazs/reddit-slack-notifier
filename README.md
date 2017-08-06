@@ -1,0 +1,55 @@
+# Reddit post Slack notifications
+
+Sends notification to Slack about new Reddit posts.
+The motivation was that we are using with a private subreddit as a forum but we lacked notifications about new posts.
+
+It can send notifications into multiple channels specified by tags in the reddit post's title. 
+Some examples:
+* Reddit post title: "[ruby] Ruby is awesome" -> posts it to the `ruby` channel
+* Reddit post title: "[elixir][kotlin] What to learn next?" -> posts it to the `elixir` and `kotlin` channels
+* Reddit post title: "What to do on our next team building?" -> posts it to the channel set as default
+
+It does not check for channel existance on Slack therefore posts tagged with non-existent channels will be ignored.
+
+# How to use
+
+## 1. Make sure you have the correct ruby version installed
+
+## 2. Configuration
+
+The application uses environment variables for configuration:
+
+`LOG_LEVEL`: level supported by Ruby [`Logger`](http://ruby-doc.org/stdlib-2.4.1/libdoc/logger/rdoc/Logger.html). It logs to STDOUT so you might want to redirect the output of the script to a file.
+Default: `info`.
+
+`SLACK_INCOMING_WEBHOOK_URL`: Slack webhook url, something like: https://hooks.slack.com/services/XXXXXYYYYZZ
+
+`SLACK_DEFAULT_CHANNEL`: If no tags found or the tag is not in the whitelist, the notification will be sent here.
+Default: `random`
+
+`SLACK_CHANNELS_WHITELIST`: Comma separated lists of channels where the notifier allowed to send messages. Add defualt channel explicitly if you want to allow that in a multiple tags scenario.
+For example: `ruby,elixir,dev-ops,r_lang`
+
+`REDDIT_USER`, `REDDIT_PASSWORD`: The credentials of your or your bot's user on Reddit
+
+`REDDIT_SUBREDDIT`: The subreddit will be polled for new posts.
+Default: `aww`
+
+`REDDIT_APP_CLIENT_ID`, `REDDIT_APP_SECRET`: Create an app on [Reddit](https://www.reddit.com/prefs/apps/) with `script` type. Fill `redirect uri` with some bogus value, it's not used.
+
+`REDDIT_APP_USER_AGENT`: Set your User-Agent for Reddit, you can read about this in their [API rules](https://github.com/reddit/reddit/wiki/API#rules)
+Default: `Redd:RedditToSlack-rb:v1.0.0 (by /u/$YOUR_REDDIT_USER)`
+
+`STORE`: At the moment just a YAML file is supported to store "last_run" information between executions. You can specify a file path without the extension.
+Default: `$app_dir/db`
+
+## Schedule the running of the script
+
+Use your favourite tools and methods, for example with cron:
+
+`*/2 * * * * cd ~/app && ruby run.rb > logs/reddit-slack.log`
+
+**Notice**
+Don't set the interval too short because the script runs might overlap and you will have a bad time (probably duplicated slack notifications).
+
+# Use at your own risk!
