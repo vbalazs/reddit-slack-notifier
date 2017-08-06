@@ -15,6 +15,8 @@ It does not check for channel existance on Slack therefore posts tagged with non
 
 ## 1. Make sure you have the correct ruby version installed
 
+Refer to [.ruby-version](.ruby-version).
+
 ## 2. Configuration
 
 The application uses environment variables for configuration:
@@ -23,6 +25,7 @@ The application uses environment variables for configuration:
 Default: `info`.
 
 `SLACK_INCOMING_WEBHOOK_URL`: Slack webhook url, something like: https://hooks.slack.com/services/XXXXXYYYYZZ
+Specify your slack bot settings here: name, avatar, etc.
 
 `SLACK_DEFAULT_CHANNEL`: If no tags found or the tag is not in the whitelist, the notification will be sent here.
 Default: `random`
@@ -43,13 +46,18 @@ Default: `Redd:RedditToSlack-rb:v1.0.0 (by /u/$YOUR_REDDIT_USER)`
 `STORE`: At the moment just a YAML file is supported to store "last_run" information between executions. You can specify a file path without the extension.
 Default: `$app_dir/db`
 
-## Schedule the running of the script
+## 3. Install the dependencies
+
+`bundle install`
+
+## Schedule the script
 
 Use your favourite tools and methods, for example with cron:
 
-`*/2 * * * * cd ~/app && ruby run.rb > logs/reddit-slack.log`
+`*/1 * * * * source ~/env.sh && cd ~/app && bundle exec run.rb >> logs/app.log 2>>logs/stderr.log`
 
 **Notice**
 Don't set the interval too short because the script runs might overlap and you will have a bad time (probably duplicated slack notifications).
+Also, watch out for reddit API [rate limits](https://github.com/reddit/reddit/wiki/API#rules).
 
 # Use at your own risk!
