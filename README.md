@@ -1,6 +1,6 @@
 # Reddit post Slack notifications
 
-[![Codeship Status for vbalazs/reddit-slack-notifier](https://app.codeship.com/projects/c715e4d0-5d12-0135-2a2f-166fbfd22a33/status?branch=master)](https://app.codeship.com/projects/238054)
+[![Codeship Status for vbalazs/reddit-slack-notifier](https://app.codeship.com/projects/c715e4d0-5d12-0135-2a2f-166fbfd22a33/status?branch=master)](https://app.codeship.com/projects/238054) [![Dependency Status](https://gemnasium.com/badges/github.com/vbalazs/reddit-slack-notifier.svg)](https://gemnasium.com/github.com/vbalazs/reddit-slack-notifier) [![Code Climate](https://codeclimate.com/github/vbalazs/reddit-slack-notifier/badges/gpa.svg)](https://codeclimate.com/github/vbalazs/reddit-slack-notifier) [![Test Coverage](https://codeclimate.com/github/vbalazs/reddit-slack-notifier/badges/coverage.svg)](https://codeclimate.com/github/vbalazs/reddit-slack-notifier/coverage) [![Issue Count](https://codeclimate.com/github/vbalazs/reddit-slack-notifier/badges/issue_count.svg)](https://codeclimate.com/github/vbalazs/reddit-slack-notifier)
 
 Sends notification to Slack about new Reddit posts.
 The motivation was that we are using with a private subreddit as a forum but we lacked notifications about new posts.
