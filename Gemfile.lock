@@ -72,8 +72,5 @@ DEPENDENCIES
   rubocop
   webmock (~> 3.0)
 
-RUBY VERSION
-   ruby 2.4.1p111
-
 BUNDLED WITH
    1.15.1
