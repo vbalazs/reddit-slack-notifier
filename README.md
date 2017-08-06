@@ -1,5 +1,7 @@
 # Reddit post Slack notifications
 
+[![Codeship Status for vbalazs/reddit-slack-notifier](https://app.codeship.com/projects/c715e4d0-5d12-0135-2a2f-166fbfd22a33/status?branch=master)](https://app.codeship.com/projects/238054)
+
 Sends notification to Slack about new Reddit posts.
 The motivation was that we are using with a private subreddit as a forum but we lacked notifications about new posts.
 
