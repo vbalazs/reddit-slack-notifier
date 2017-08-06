@@ -9,5 +9,6 @@ group :test do
   gem "mocha"
   gem "pry-byebug"
   gem "rubocop"
+  gem "simplecov", require: false
   gem "webmock", "~> 3.0"
 end
