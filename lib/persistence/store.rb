@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Persistence
   class Store
     attr_reader :adapter

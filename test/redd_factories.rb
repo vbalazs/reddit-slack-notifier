@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ReddFactories
   def build_redd_submission(attrs = {})
     Redd::Models::Submission.new(

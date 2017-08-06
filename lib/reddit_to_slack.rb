@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RedditToSlack
   attr_reader :slack_client, :reddit_query_object
 

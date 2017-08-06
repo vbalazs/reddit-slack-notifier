@@ -7,6 +7,9 @@ Style/RedundantReturn:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: when_needed
+
 ##################### Metrics ##################################
 
 Metrics/ClassLength:
