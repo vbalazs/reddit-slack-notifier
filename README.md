@@ -11,7 +11,7 @@ Some examples:
 * Reddit post title: "[elixir][kotlin] What to learn next?" -> posts it to the `elixir` and `kotlin` channels
 * Reddit post title: "What to do on our next team building?" -> posts it to the channel set as default
 
-It does not check for channel existance on Slack therefore posts tagged with non-existent channels will be ignored.
+It does not check for channel existence on Slack therefore posts tagged with non-existent channels will be ignored.
 
 # How to use
 
